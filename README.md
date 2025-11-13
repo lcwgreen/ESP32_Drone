@@ -40,9 +40,13 @@
               4. 3V3 net (power from the ESP/ other components)
             EN: connecting to a switch, switching from 5V to GND (provide a control for 3V3 supply)
             BP: passing a 470pF to gnd
-            GND: to gnd
-            
-      
-  --> MIC5219-3.3YM5      
-
+            GND: to gnd      
+  --> MIC5219-3.3YM5   
+  
+  Power supply
+  
+  Battery charger
+  -->TP4056  
+  Battery charger
+  
 #Hardware development
