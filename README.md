@@ -3,7 +3,7 @@
   #schemetic drawing
   Power supply
   --> type C charger
-      port: vbus (5V line) (1. need input protection elecments (fuse) 2.filter (big cap)
+      pins: vbus (5V line) (1. need input protection elecments (fuse) 2.filter (big cap)
             CC1 and CC2 (control pin) : Define the usage of the USB C)
                 if CC1,2 both in gnd, then this is a sink (power consumer, like my drone)
                 if CC1,2 both in vbus, then this is a source (power provider, like battery)
@@ -11,7 +11,7 @@
             Sbus1 and Sbus2 (sub-band)
             Shield (can connect to 0 ohm resistor then gnd)
      Routing: 
-         VBUS:
+        VBUS:
            1. vbus --> 100k --> gnd (for detecting any power supply come in (safety))
            2. vbus --> P-type Mosfet --> battery (for switching power supply between usb and battery)
            3. vbus --> diode --> to main power rail (vbus symbol)
@@ -19,7 +19,30 @@
                main power rail --> TP4056 (charging battery)
                main power rail --> MIC5219-3.3YM5 (regulate the power from 5V to 3.3V)
                main power rail --> 10u cap --> gnd (filtering and stability)
-        CC1, CC2: seperately --> 5.1k ohm --> gnd (tell the system this device is a sink, if no ohm then new type c cannot be used)
-
+        CC1, CC2: seperately --> 5.1k ohm --> gnd (tell the system this device is a sink, if no ohm then new type c cannot be         used)
+        D-, D+: D- connecting to other D-, same as D+ (able reverse connection of type C)
+        SBUS1, SBUS2: they both floating, no need sub-band function
+        Shield, GND: connecting together
+  --> type C charger
+  --> MIC5219-3.3YM5
+      pins: 
+            IN: higher power supply in (5V)
+            Out: 3.3V out
+            EN (Enable): =1 (able the chip work), =0 (unable the chip work)
+            BP: small capacitor pin (reduce the output noise
+            GND: common return
+      Routing:
+            IN: connecting the bus after passing the diode (power from USB-C or battery: 5V)
+            Out: 
+              1. 2.2uF to GND (small and faster capacitor -> filter out the high frequency noise)
+              2. 10uF to GND (smooths slow voltage dips, if ESP suddenly draw lots current, this can provide a support)
+              3. 470 ohm --> LED --> GND (indicate there is power supply from 3V3 chip)
+              4. 3V3 net (power from the ESP/ other components)
+            EN: connecting to a switch, switching from 5V to GND (provide a control for 3V3 supply)
+            BP: passing a 470pF to gnd
+            GND: to gnd
+            
+      
+  --> MIC5219-3.3YM5      
 
 #Hardware development
