@@ -19,7 +19,7 @@
                main power rail --> TP4056 (charging battery)
                main power rail --> MIC5219-3.3YM5 (regulate the power from 5V to 3.3V)
                main power rail --> 10u cap --> gnd (filtering and stability)
-        CC1, CC2: seperately --> 5.1k ohm --> gnd (tell the system this device is a sink, if no ohm then new type c cannot be         used)
+        CC1, CC2: seperately --> 5.1k ohm --> gnd (tell the system this device is a sink, if no ohm then new type c cannot be used)
         D-, D+: D- connecting to other D-, same as D+ (able reverse connection of type C)
         SBUS1, SBUS2: they both floating, no need sub-band function
         Shield, GND: connecting together
@@ -46,6 +46,17 @@
   Power supply
   
   Battery charger
+  -->TP4056  
+        pins: 
+            TEMP: Temperature detector, if too hot then disable charging
+            PROG: Determine the charing rate based on the resistor value (1100/ohm)
+            GND: Same GND as the power input
+            VCC: connecting to the power input (charge when usb pluged in)
+            EP (Expose Pad): for heat disspitation, must connecting to the GND
+            CE (Charging enable): high = enable charging, low stop charge
+            CHRG-: Charging indicator 
+            STDBY-: Charging complete indicator
+            BAT: Connecting to battery 
   -->TP4056  
   Battery charger
   
