@@ -57,6 +57,12 @@
             CHRG-: Charging indicator 
             STDBY-: Charging complete indicator
             BAT: Connecting to battery 
+        routing: 
+            TEMP: directly to gnd, No need tempearture checking
+            PROG: connecting 3.3Rohm, 1000/3.3= 333mA
+            VCC: connecting to VBUS, directly draw current from VBUS
+            EP: directly to gnd (outer shell)
+            CE: Connecting to vbus
   -->TP4056  
   Battery charger
   
