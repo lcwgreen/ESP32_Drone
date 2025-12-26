@@ -62,7 +62,11 @@
             PROG: connecting 3.3Rohm, 1000/3.3= 333mA
             VCC: connecting to VBUS, directly draw current from VBUS
             EP: directly to gnd (outer shell)
-            CE: Connecting to vbus
+            CE: Connecting to vbus where it is always enable charging (operating mode)
+            CHRG-: CHRG̅ → 1.3 kΩ → LED (−) → VBUS (+) (Charing indicater)
+            STDBY-: STDBY̅ → 1.3 kΩ → LED (−) → VBUS (+) (Fully charged indicator)
+            BAT: Connecting to the batt+ net and a jumper (connecting the li battery + and -)
+            
   -->TP4056  
   Battery charger
   
